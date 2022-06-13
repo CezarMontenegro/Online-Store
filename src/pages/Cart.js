@@ -2,7 +2,7 @@ import React from 'react';
 
 function Cart() {
   return (
-    <p>Eu sou Cart</p>
+    <h1 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h1>
   );
 }
 
