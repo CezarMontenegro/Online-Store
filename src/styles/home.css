@@ -59,3 +59,8 @@ main div input + a img {
   height: auto;
   width: 70%;
 }
+
+main h1 {
+  display: flex;
+  justify-content: center;
+}

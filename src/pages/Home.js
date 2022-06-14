@@ -9,6 +9,7 @@ function Home() {
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
   const [inputValue, setInputValue] = useState('');
+  const [categoryValue, setCategoryValue] = useState('');
   const [firstSearchWasMade, setFirstSearchWasMade] = useState(false);
 
   async function fetchCategories() {
@@ -25,8 +26,14 @@ function Home() {
     fetchCategories();
   }, []);
 
+  function handleRadioCategory(event) {
+    fetchProducts(event.target.id, '');
+    setCategoryValue(event.target.id);
+    setFirstSearchWasMade(true);
+  }
+
   function handleButton() {
-    fetchProducts('', inputValue);
+    fetchProducts(categoryValue, inputValue);
     setFirstSearchWasMade(true);
   }
 
@@ -62,17 +69,20 @@ function Home() {
 
   return (
     <div>
+      {console.log(categories)}
       <nav>
         <h3>Categorias:</h3>
         { categories.map((category) => (
           <label
-            htmlFor={ category.name }
+            htmlFor={ category.id }
             key={ category.name }
             data-testid="category"
           >
             <input
-              id={ category.name }
+              id={ category.id }
               type="radio"
+              name="categories"
+              onClick={ (event) => handleRadioCategory(event) }
             />
             { category.name }
           </label>))}
