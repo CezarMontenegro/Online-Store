@@ -28,10 +28,34 @@ main div {
 main div input {
   border-radius: 20px;
   height: 25px;
-  width: 90%;
+  width: 85%;
 }
 
 main div img {
   border: 1px solid red;
   height: 40px;
+}
+
+main div input + a img {
+  border: 1px solid green;
+  height: 30px;
+}
+
+#card-div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  justify-content: center;
+}
+
+#card-div div {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  width: 30%;
+}
+
+#card-div div img {
+  height: auto;
+  width: 70%;
 }
