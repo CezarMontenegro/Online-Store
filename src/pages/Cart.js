@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { CartContext } from '../context/CartContex';
 
 function Cart() {
+  const [cartContext] = useContext(CartContext);
   return (
-    <h1 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h1>
+    <div>
+      <h1 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h1>
+      {console.log(cartContext)}
+    </div>
   );
 }
 
