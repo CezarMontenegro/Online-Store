@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import cartIcon from '../images/icons8-shopping-cart-50.png';
 import undoIcon from '../images/icons8-reply-arrow-50.png';
 import Loading from '../components/Loading';
+import { getProductsDetails } from '../services/api';
 import '../styles/detailsProduct.css';
 
 function DetailedProduct() {
@@ -13,8 +14,7 @@ function DetailedProduct() {
 
   async function fetchProductDetails() {
     setLoading(true);
-    const data = await fetch(`https://api.mercadolibre.com/items/${productId}`);
-    const result = await data.json();
+    const result = await getProductsDetails(productId);
     setDetails(result);
     setLoading(false);
   }

@@ -12,7 +12,7 @@ function Home() {
   const [inputValue, setInputValue] = useState('');
   const [categoryValue, setCategoryValue] = useState('');
   const [firstSearchWasMade, setFirstSearchWasMade] = useState(false);
-  const [cartContext, setCartContext] = useContext(CartContext);
+  const [cartList, setCartList] = useContext(CartContext);
 
   async function fetchCategories() {
     const result = await getCategories();
@@ -41,14 +41,14 @@ function Home() {
 
   function handleAddToCartButton(event) {
     const productDoesNotExistInTheContext = -1;
-    const editCartContext = cartContext;
-    const index = cartContext.findIndex((product) => product.id === event.target.id);
+    const editCartList = [...cartList];
+    const index = cartList.findIndex((product) => product.id === event.target.id);
 
     if (index !== productDoesNotExistInTheContext) {
-      editCartContext[index].quantity += 1;
-      setCartContext(editCartContext);
+      editCartList[index].quantity += 1;
+      setCartList(editCartList);
     } else {
-      setCartContext([...cartContext, { id: event.target.id, quantity: 1 }]);
+      setCartList([...editCartList, { id: event.target.id, quantity: 1 }]);
     }
   }
 
