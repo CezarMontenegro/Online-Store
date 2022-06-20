@@ -30,12 +30,12 @@
   width: 85%;
 }
 
-main div img {
+#home-main div img {
   border: 1px solid red;
   height: 40px;
 }
 
-main div input + a img {
+#home-main div input + a img {
   border: 1px solid green;
   height: 30px;
 }

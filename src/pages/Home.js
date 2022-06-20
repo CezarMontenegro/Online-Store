@@ -117,7 +117,7 @@ function Home() {
             { category.name }
           </label>))}
       </nav>
-      <main>
+      <main id="home-main">
         <div>
           <input
             type="text"
