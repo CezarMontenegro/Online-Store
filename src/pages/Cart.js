@@ -1,31 +1,13 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { CartContext } from '../context/CartContex';
 import undoIcon from '../images/icons8-reply-arrow-50.png';
 import cartIcon from '../images/icons8-shopping-cart-50.png';
 import openBoxIcon from '../images/icons8-box-128.png';
-import { getProductsDetails } from '../services/api';
 import '../styles/cart.css';
 
 function Cart() {
-  const [cartList, setCartList] = useContext(CartContext);
-
-  async function fetchCartListData() {
-    const editCartList = await Promise.all(cartList.map(async (product) => {
-      const productData = await getProductsDetails(product.id);
-      return ({
-        id: productData.id,
-        img: productData.thumbnail,
-        name: productData.title,
-        price: productData.price,
-        quantity: product.quantity });
-    }));
-    setCartList(editCartList);
-  }
-
-  useEffect(() => {
-    fetchCartListData();
-  }, []);
+  const [cartList] = useContext(CartContext);
 
   return (
     <div id="cart">
@@ -42,13 +24,27 @@ function Cart() {
       <main>
         { !cartList.length
           ? (
-            <div>
+            <div id="empty-cart">
               <img src={ openBoxIcon } alt="openBoxIcon" />
-              <h2>Seu Carrinho Está Vazio</h2>
+              <h2 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h2>
             </div>)
           : (
-            <div>
-              {}
+            <div id="cart-products">
+              { cartList.map((product) => (
+                <div key={ product.id }>
+                  <button type="button">
+                    X
+                  </button>
+                  <img src={ product.img } alt={ product.name } />
+                  <h4 data-testid="shopping-cart-product-name">{ product.name }</h4>
+                  <h4>-</h4>
+                  <h3 data-testid="shopping-cart-product-quantity">{ product.quantity }</h3>
+                  <h4>+</h4>
+                  <h4>
+                    { Number(product.price).toFixed(2) }
+                  </h4>
+                </div>
+              ))}
             </div>)}
       </main>
     </div>
