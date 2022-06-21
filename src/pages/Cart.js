@@ -38,7 +38,9 @@ function Cart() {
                   <img src={ product.img } alt={ product.name } />
                   <h4 data-testid="shopping-cart-product-name">{ product.name }</h4>
                   <h4>-</h4>
-                  <h3 data-testid="shopping-cart-product-quantity">{ product.quantity }</h3>
+                  <h3 data-testid="shopping-cart-product-quantity">
+                    { product.quantity }
+                  </h3>
                   <h4>+</h4>
                   <h4>
                     { Number(product.price).toFixed(2) }

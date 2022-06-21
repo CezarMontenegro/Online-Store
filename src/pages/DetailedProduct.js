@@ -74,27 +74,29 @@ function DetailedProduct() {
         </div>)
         : (
           <div>
-            <div data-testid="product-detail-name">
-              <h3>{`${details.title} - R$${Number(details.price).toFixed(2)}`}</h3>
-              <img src={ details.thumbnail } alt={ details.title } />
-              <button
-                id={ details.id }
-                type="button"
-                onClick={ (event) => handleAddToCartButton(event) }
-                data-testid="product-detail-add-to-cart"
-              >
-                Add to Cart
-              </button>
-            </div>
+            <h3>{`${details.title} - R$${Number(details.price).toFixed(2)}`}</h3>
             <div>
-              <h4>Especificações Técnicas:</h4>
-              <ul>
-                { attributes && attributes.map((attribute) => (
-                  <li key={ attribute.id }>
-                    {`${attribute.name}: ${attribute.value_name}`}
-                  </li>
-                ))}
-              </ul>
+              <div data-testid="product-detail-name">
+                <img src={ details.thumbnail } alt={ details.title } />
+                <button
+                  id={ details.id }
+                  type="button"
+                  onClick={ (event) => handleAddToCartButton(event) }
+                  data-testid="product-detail-add-to-cart"
+                >
+                  Add to Cart
+                </button>
+              </div>
+              <div>
+                <h4>Especificações Técnicas:</h4>
+                <ul>
+                  { attributes && attributes.map((attribute) => (
+                    <li key={ attribute.id }>
+                      {`${attribute.name}: ${attribute.value_name}`}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>)}
 
