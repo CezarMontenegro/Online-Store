@@ -1,0 +1,40 @@
+#details-product {
+  display: flex;
+  flex-direction: column;
+}
+
+#details-product header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 2%;
+}
+
+#details-product div:nth-child(2) {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+#details-product div:nth-child(2) div:first-child {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-basis: 30%
+}
+
+#details-product div:nth-child(2) div:first-child img {
+  height: auto;
+  width: 50%;
+}
+
+#details-product div:nth-child(2) div:last-child {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 60%
+}
+
+#details-product div:nth-child(2) div:last-child h4 {
+  margin-left: 20px;
+  margin-bottom: 0;
+}
+

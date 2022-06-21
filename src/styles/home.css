@@ -1,42 +1,41 @@
-div {
+#home {
   border: 1px solid blue;
   display: flex;
   width: 100%;
 }
 
-nav {
+#home nav {
   border: 1px solid red;
   display: flex;
   flex-basis: 20%;
   flex-direction: column;
 }
 
-main {
+#home main {
   border: 3px solid green;
   flex-basis: 80%;
   width: 100%;
-
 }
 
-main div {
+#home main div {
   align-items: center;
   border: 1px solid red;
   display: flex;
   justify-content: space-evenly;
 }
 
-main div input {
+#home main div input {
   border-radius: 20px;
   height: 25px;
   width: 85%;
 }
 
-main div img {
+#home-main div img {
   border: 1px solid red;
   height: 40px;
 }
 
-main div input + a img {
+#home-main div input + a img {
   border: 1px solid green;
   height: 30px;
 }
@@ -51,11 +50,19 @@ main div input + a img {
 #card-div div {
   display: flex;
   flex-direction: column;
-  height: auto;
   width: 30%;
+}
+
+#card-div div div {
+  width: auto;
 }
 
 #card-div div img {
   height: auto;
-  width: 70%;
+  width: 80%;
+}
+
+main h1 {
+  display: flex;
+  justify-content: center;
 }
