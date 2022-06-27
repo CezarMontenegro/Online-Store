@@ -16,6 +16,7 @@ function Home() {
   const [inputValue, setInputValue] = useState('');
   const [categoryValue, setCategoryValue] = useState('');
   const [firstSearchWasMade, setFirstSearchWasMade] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [cartList, setCartList] = useContext(CartContext);
 
   async function fetchCategories() {
@@ -24,8 +25,10 @@ function Home() {
   }
 
   async function fetchProducts(categoryId, query) {
+    setLoading(true);
     const result = await getProductsFromCategoryAndQuery(categoryId, query);
     setProducts(result.results);
+    setLoading(false);
   }
 
   useEffect(() => {
@@ -40,7 +43,6 @@ function Home() {
 
   function handleButton() {
     fetchProducts(categoryValue, inputValue);
-    setFirstSearchWasMade(true);
   }
 
   async function handleAddToCartButton(event) {
@@ -66,14 +68,25 @@ function Home() {
   }
 
   function renderMain() {
-    if (!firstSearchWasMade) {
+    if (loading && firstSearchWasMade) {
       return (
-        <h1 data-testid="home-initial-message">
-          Digite algum termo de pesquisa ou escolha uma categoria.
-        </h1>
+        <div id="loading">
+          <h1>
+            Loading...
+          </h1>
+        </div>
       );
     }
-    if (firstSearchWasMade && products.length) {
+    if (!firstSearchWasMade) {
+      return (
+        <div id="start-container">
+          <h1>
+            Digite algum termo de pesquisa ou escolha uma categoria.
+          </h1>
+        </div>
+      );
+    }
+    if (firstSearchWasMade && products.length && !loading) {
       return (
         <div id="cards-container">
           { products.map((product) => (
@@ -105,17 +118,20 @@ function Home() {
         </div>
       );
     }
-    if (firstSearchWasMade && !products.length) {
+    if (firstSearchWasMade && !products.length && !loading) {
       return (
-        <h1>
-          Nenhum produto foi encontrado
-        </h1>
+        <div id="product-not-found">
+          <h1>
+            Nenhum produto foi encontrado
+          </h1>
+        </div>
       );
     }
   }
 
   return (
     <div id="home">
+      {console.log('loading', loading)}
       <aside>
         <h3>Categorias:</h3>
         <div id="galleries">

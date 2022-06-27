@@ -1,22 +1,22 @@
 /* general */
 
 #home {
+  background-color: rgb(230, 227, 15);
   display: flex;
   width: 100vh;
-  background-color: rgb(230, 227, 15);
 }
 
 /* aside  */
 
 #home aside {
+  background-color: rgb(230, 227, 15);
   border: 1px solid gray;
   display: flex;
-  width: 260px;
   flex-direction: column;
   height: 100vh;
   padding-left: 10px;
   position: fixed;
-  background-color: rgb(230, 227, 15);
+  width: 260px;
 }
 
 #home aside #galleries {
@@ -36,57 +36,63 @@
 /* main header */
 
 #home main {
-  flex-basis: 80%;
-  width: calc(100% - 272px);
-  position: absolute;
-  left: 272px;
   background-color: rgb(230, 227, 15);
+  flex-basis: 80%;
+  left: 272px;
+  position: absolute;
+  width: calc(100% - 272px);
 }
 
 #home main header {
   align-items: center;
+  background-color: rgb(230, 227, 15);
   border: 1px solid gray;
   display: flex;
   justify-content: space-evenly;
-  margin-bottom: 20px;
-  width: 100%;
+  position: fixed;
+  width: calc(100% - 272px);
+  z-index: 1;
 }
 
 #home main header input {
   border-radius: 20px;
   height: 25px;
-  width: 85%;
   margin: 15px 0;
+  width: 85%;
 }
 
 #home main header img {
-  height: 40px;
   cursor: pointer;
+  height: 40px;
 }
 
 #home main header img:hover {
-  height: 50px;
   cursor: pointer;
+  height: 50px;
 }
 
-/* main main */
+/* cards-container */
 
 #cards-container {
+  background-color: rgb(230, 227, 15);
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
   justify-content: center;
+  padding-top: 20px;
+  position: absolute;
+  top: 63px;
 }
 
 #cards-container .card {
+  background-color: rgba(219, 219, 209, 0.829);
   border: 1px solid gray;
+  border-radius: 5px;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  width: 30%;
   padding: 10px;
-  box-sizing: border-box;
-  border-radius: 5px;
-  background-color: rgba(219, 219, 209, 0.829);
+  width: 30%;
 }
 
 #cards-container .card:hover {
@@ -109,15 +115,23 @@
 }
 
 #cards-container .card .card-price button {
-  margin: 15px;
   background-color: rgb(29, 29, 211);
-  color: white;
-  font-weight: bold;
   border: none;
   border-radius: 10px;
+  color: white;
+  font-weight: bold;
+  margin: 15px;
 }
 
-main h1 {
+/* start-container */
+
+#start-container, #product-not-found, #loading {
+  background-color: rgb(230, 227, 15);
+  height: calc(100vh - 63px);
+  position: absolute;
+  top: 63px;
+  width: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
