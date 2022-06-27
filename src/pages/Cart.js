@@ -7,7 +7,7 @@ import openBoxIcon from '../images/icons8-box-128.png';
 import '../styles/cart.css';
 
 function Cart() {
-  const [cartList, setCartList] = useContext(CartContext);
+  const [cartList] = useContext(CartContext);
 
   return (
     <div id="cart">
