@@ -75,20 +75,22 @@ function Home() {
     }
     if (firstSearchWasMade && products.length) {
       return (
-        <div id="card-div">
+        <div id="cards-container">
           { products.map((product) => (
-            <div key={ product.id }>
+            <div className="card" key={ product.id }>
               <Link
                 to={ `detailed/${product.id}` }
                 data-testid="product-detail-link"
               >
-                <div data-testid="product" id="card-div-div">
-                  <h4>{ product.title }</h4>
+                <div data-testid="product" className="card-link">
+                  <div className="card-title">
+                    <h4>{ product.title }</h4>
+                  </div>
                   <img src={ product.thumbnail } alt={ product.title } />
-                  <h5>{`R$ ${product.price.toFixed(2)}`}</h5>
                 </div>
               </Link>
-              <div>
+              <div className="card-price">
+                <h4>{`R$ ${product.price.toFixed(2)}`}</h4>
                 <button
                   id={ product.id }
                   type="button"
@@ -114,25 +116,27 @@ function Home() {
 
   return (
     <div id="home">
-      <nav>
+      <aside>
         <h3>Categorias:</h3>
-        { categories.map((category) => (
-          <label
-            htmlFor={ category.id }
-            key={ category.name }
-            data-testid="category"
-          >
-            <input
-              id={ category.id }
-              type="radio"
-              name="categories"
-              onClick={ (event) => handleRadioCategory(event) }
-            />
-            { category.name }
-          </label>))}
-      </nav>
-      <main id="home-main">
-        <div>
+        <div id="galleries">
+          { categories.map((category) => (
+            <label
+              htmlFor={ category.id }
+              key={ category.name }
+              data-testid="category"
+            >
+              <input
+                id={ category.id }
+                type="radio"
+                name="categories"
+                onClick={ (event) => handleRadioCategory(event) }
+              />
+              { category.name }
+            </label>))}
+        </div>
+      </aside>
+      <main>
+        <header>
           <input
             type="text"
             data-testid="query-input"
@@ -155,7 +159,7 @@ function Home() {
               alt="Aponta para Shopping Cart"
             />
           </Link>
-        </div>
+        </header>
         { renderMain() }
       </main>
     </div>
