@@ -131,7 +131,7 @@ function Home() {
                 name="categories"
                 onClick={ (event) => handleRadioCategory(event) }
               />
-              { category.name }
+              <span>{ category.name }</span>
             </label>))}
         </div>
       </aside>

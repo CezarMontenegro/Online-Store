@@ -2,7 +2,8 @@
 
 #home {
   display: flex;
-  width: 100%;
+  width: 100vh;
+  background-color: rgb(230, 227, 15);
 }
 
 /* aside  */
@@ -10,16 +11,22 @@
 #home aside {
   border: 1px solid gray;
   display: flex;
-  flex-basis: 20%;
+  width: 260px;
   flex-direction: column;
   height: 100vh;
   padding-left: 10px;
+  position: fixed;
+  background-color: rgb(230, 227, 15);
 }
 
 #home aside #galleries {
   display: flex;
   flex-direction: column;
-  gap: 1px;
+  gap: 3px;
+}
+
+#home aside #galleries span:hover {
+  font-weight: bolder;
 }
 
 #home aside #galleries input {
@@ -30,7 +37,10 @@
 
 #home main {
   flex-basis: 80%;
-  width: 100%;
+  width: calc(100% - 272px);
+  position: absolute;
+  left: 272px;
+  background-color: rgb(230, 227, 15);
 }
 
 #home main header {
@@ -39,17 +49,24 @@
   display: flex;
   justify-content: space-evenly;
   margin-bottom: 20px;
-  padding: 10px 0;
+  width: 100%;
 }
 
 #home main header input {
   border-radius: 20px;
   height: 25px;
   width: 85%;
+  margin: 15px 0;
 }
 
 #home main header img {
   height: 40px;
+  cursor: pointer;
+}
+
+#home main header img:hover {
+  height: 50px;
+  cursor: pointer;
 }
 
 /* main main */
@@ -57,7 +74,7 @@
 #cards-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 5px;
+  gap: 20px;
   justify-content: center;
 }
 
@@ -69,6 +86,7 @@
   padding: 10px;
   box-sizing: border-box;
   border-radius: 5px;
+  background-color: rgba(219, 219, 209, 0.829);
 }
 
 #cards-container .card:hover {
