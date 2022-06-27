@@ -7,7 +7,7 @@ import openBoxIcon from '../images/icons8-box-128.png';
 import '../styles/cart.css';
 
 function Cart() {
-  const [cartList, setCartList] = useContext(CartContext);
+  const [cartList] = useContext(CartContext);
 
   return (
     <div id="cart">
@@ -22,10 +22,32 @@ function Cart() {
         <h2>Carrinho de Compras</h2>
       </div>
       <main>
-        <div>
-          <img src={ openBoxIcon } alt="openBoxIcon" />
-          <h2>Seu Carrinho Está Vazio</h2>
-        </div>
+        { !cartList.length
+          ? (
+            <div id="empty-cart">
+              <img src={ openBoxIcon } alt="openBoxIcon" />
+              <h2 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h2>
+            </div>)
+          : (
+            <div id="cart-products">
+              { cartList.map((product) => (
+                <div key={ product.id }>
+                  <button type="button">
+                    X
+                  </button>
+                  <img src={ product.img } alt={ product.name } />
+                  <h4 data-testid="shopping-cart-product-name">{ product.name }</h4>
+                  <h4>-</h4>
+                  <h3 data-testid="shopping-cart-product-quantity">
+                    { product.quantity }
+                  </h3>
+                  <h4>+</h4>
+                  <h4>
+                    { Number(product.price).toFixed(2) }
+                  </h4>
+                </div>
+              ))}
+            </div>)}
       </main>
     </div>
   );

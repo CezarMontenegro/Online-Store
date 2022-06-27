@@ -2,7 +2,11 @@ import React, { useEffect, useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import cartIcon from '../images/icons8-shopping-cart-50.png';
 import searchIcon from '../images/icons8-pesquisar-64.png';
-import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
+import {
+  getCategories,
+  getProductsFromCategoryAndQuery,
+  getProductsDetails }
+  from '../services/api';
 import { CartContext } from '../context/CartContex';
 import '../styles/home.css';
 
@@ -12,7 +16,7 @@ function Home() {
   const [inputValue, setInputValue] = useState('');
   const [categoryValue, setCategoryValue] = useState('');
   const [firstSearchWasMade, setFirstSearchWasMade] = useState(false);
-  const [cartContext, setCartContext] = useContext(CartContext);
+  const [cartList, setCartList] = useContext(CartContext);
 
   async function fetchCategories() {
     const result = await getCategories();
@@ -39,16 +43,25 @@ function Home() {
     setFirstSearchWasMade(true);
   }
 
-  function handleAddToCartButton(event) {
+  async function handleAddToCartButton(event) {
     const productDoesNotExistInTheContext = -1;
-    const editCartContext = cartContext;
-    const index = cartContext.findIndex((product) => product.id === event.target.id);
+    const editCartList = [...cartList];
+    const index = cartList.findIndex((product) => product.id === event.target.id);
 
     if (index !== productDoesNotExistInTheContext) {
-      editCartContext[index].quantity += 1;
-      setCartContext(editCartContext);
+      editCartList[index].quantity += 1;
+
+      setCartList(editCartList);
     } else {
-      setCartContext([...cartContext, { id: event.target.id, quantity: 1 }]);
+      const productData = await getProductsDetails(event.target.id);
+      const productInfo = {
+        id: productData.id,
+        img: productData.thumbnail,
+        name: productData.title,
+        price: productData.price,
+        quantity: 1 };
+
+      setCartList([...editCartList, productInfo]);
     }
   }
 
@@ -80,6 +93,7 @@ function Home() {
                   id={ product.id }
                   type="button"
                   onClick={ (event) => handleAddToCartButton(event) }
+                  data-testid="product-add-to-cart"
                 >
                   Add to Cart
                 </button>
