@@ -11,10 +11,8 @@ function Cart() {
 
   function removeItem(event) {
     const editCartList = [...cartList];
-    console.log('event value', event.target.value);
-    console.log('editCartList', editCartList);
-    const splicedCartList = editCartList.splice(0, 1);
-    console.log('spliced', splicedCartList);
+    editCartList.splice(event.target.value, 1);
+    setCartList(editCartList);
   }
 
   function increaseQuantity(event) {
