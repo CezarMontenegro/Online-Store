@@ -1,7 +1,14 @@
 /* general */
 
+:root {
+
+  --bg: rgb(230, 227, 15);
+
+  --cards-bg: rgba(219, 219, 209, 0.829);
+}
+
 #home {
-  background-color: rgb(230, 227, 15);
+  background-color: var(--bg);
   display: flex;
   width: 100vh;
 }
@@ -9,7 +16,7 @@
 /* aside  */
 
 #home aside {
-  background-color: rgb(230, 227, 15);
+  background-color: var(--bg);
   border: 1px solid gray;
   display: flex;
   flex-direction: column;
@@ -36,7 +43,7 @@
 /* main header */
 
 #home main {
-  background-color: rgb(230, 227, 15);
+  background-color: var(--bg);
   flex-basis: 80%;
   left: 272px;
   position: absolute;
@@ -45,7 +52,7 @@
 
 #home main header {
   align-items: center;
-  background-color: rgb(230, 227, 15);
+  background-color: var(--bg);
   border: 1px solid gray;
   display: flex;
   justify-content: space-evenly;
@@ -74,7 +81,7 @@
 /* cards-container */
 
 #cards-container {
-  background-color: rgb(230, 227, 15);
+  background-color: var(--bg);
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
@@ -112,21 +119,28 @@
 #cards-container .card .card-price {
   display: flex;
   justify-content: center;
+  align-items: center;
+  gap: 20px
 }
 
 #cards-container .card .card-price button {
   background-color: rgb(29, 29, 211);
-  border: none;
+  /* border: none; */
   border-radius: 10px;
   color: white;
   font-weight: bold;
-  margin: 15px;
+  height: 40px;
+  width: 100px;
+}
+
+#cards-container .card .card-price button:hover {
+  box-shadow: 1px 1px 1px 1px blue;
 }
 
 /* start-container */
 
 #start-container, #product-not-found, #loading {
-  background-color: rgb(230, 227, 15);
+  background-color: var(--bg);
   height: calc(100vh - 63px);
   position: absolute;
   top: 63px;

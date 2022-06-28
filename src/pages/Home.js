@@ -131,7 +131,6 @@ function Home() {
 
   return (
     <div id="home">
-      {console.log('loading', loading)}
       <aside>
         <h3>Categorias:</h3>
         <div id="galleries">

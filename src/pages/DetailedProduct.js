@@ -4,7 +4,7 @@ import cartIcon from '../images/icons8-shopping-cart-50.png';
 import undoIcon from '../images/icons8-reply-arrow-50.png';
 import Loading from '../components/Loading';
 import { getProductsDetails } from '../services/api';
-import '../styles/detailsProduct.css';
+import '../styles/detailedProduct.css';
 import { CartContext } from '../context/CartContex';
 
 function DetailedProduct() {
@@ -48,7 +48,7 @@ function DetailedProduct() {
   }
 
   return (
-    <div id="details-product">
+    <div id="detailed-product">
       <header>
         <Link
           to="/"
@@ -73,10 +73,10 @@ function DetailedProduct() {
           <Loading />
         </div>)
         : (
-          <div>
-            <h3>{`${details.title} - R$${Number(details.price).toFixed(2)}`}</h3>
-            <div>
-              <div data-testid="product-detail-name">
+          <main>
+            <h2>{`${details.title} - R$${Number(details.price).toFixed(2)}`}</h2>
+            <div id="product-data">
+              <div id="product-info" data-testid="product-detail-name">
                 <img src={ details.thumbnail } alt={ details.title } />
                 <button
                   id={ details.id }
@@ -87,8 +87,8 @@ function DetailedProduct() {
                   Add to Cart
                 </button>
               </div>
-              <div>
-                <h4>Especificações Técnicas:</h4>
+              <div id="product-details">
+                <h3>Especificações Técnicas:</h3>
                 <ul>
                   { attributes && attributes.map((attribute) => (
                     <li key={ attribute.id }>
@@ -98,8 +98,7 @@ function DetailedProduct() {
                 </ul>
               </div>
             </div>
-          </div>)}
-
+          </main>)}
     </div>
   );
 }
