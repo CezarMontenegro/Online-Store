@@ -1,68 +1,151 @@
-#home {
-  border: 1px solid blue;
-  display: flex;
-  width: 100%;
+/* general */
+
+:root {
+
+  --bg: rgb(230, 227, 15);
+
+  --cards-bg: rgba(219, 219, 209, 0.829);
 }
 
-#home nav {
-  border: 1px solid red;
+#home {
+  background-color: var(--bg);
   display: flex;
-  flex-basis: 20%;
-  flex-direction: column;
+  width: 100vh;
 }
+
+/* aside  */
+
+#home aside {
+  background-color: var(--bg);
+  border: 1px solid gray;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding-left: 10px;
+  position: fixed;
+  width: 260px;
+}
+
+#home aside #galleries {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+#home aside #galleries span:hover {
+  font-weight: bolder;
+}
+
+#home aside #galleries input {
+  margin-right: 5px;
+}
+
+/* main header */
 
 #home main {
-  border: 3px solid green;
+  background-color: var(--bg);
   flex-basis: 80%;
-  width: 100%;
+  left: 272px;
+  position: absolute;
+  width: calc(100% - 272px);
 }
 
-#home main div {
+#home main header {
   align-items: center;
-  border: 1px solid red;
+  background-color: var(--bg);
+  border: 1px solid gray;
   display: flex;
   justify-content: space-evenly;
+  position: fixed;
+  width: calc(100% - 272px);
+  z-index: 1;
 }
 
-#home main div input {
+#home main header input {
   border-radius: 20px;
   height: 25px;
+  margin: 15px 0;
   width: 85%;
 }
 
-#home-main div img {
-  border: 1px solid red;
+#home main header img {
+  cursor: pointer;
   height: 40px;
 }
 
-#home-main div input + a img {
-  border: 1px solid green;
-  height: 30px;
+#home main header img:hover {
+  cursor: pointer;
+  height: 50px;
 }
 
-#card-div {
+/* cards-container */
+
+#cards-container {
+  background-color: var(--bg);
   display: flex;
   flex-wrap: wrap;
-  gap: 5px;
+  gap: 20px;
   justify-content: center;
+  padding-top: 20px;
+  position: absolute;
+  top: 63px;
 }
 
-#card-div div {
+#cards-container .card {
+  background-color: rgba(219, 219, 209, 0.829);
+  border: 1px solid gray;
+  border-radius: 5px;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  padding: 10px;
   width: 30%;
 }
 
-#card-div div div {
-  width: auto;
+#cards-container .card:hover {
+  border: 3px solid gray;
 }
 
-#card-div div img {
-  height: auto;
-  width: 80%;
+#cards-container .card .card-link {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
 }
 
-main h1 {
+#cards-container .card .card-link .card-title {
+  height: 96px;
+}
+
+#cards-container .card .card-price {
   display: flex;
   justify-content: center;
+  align-items: center;
+  gap: 20px
+}
+
+#cards-container .card .card-price button {
+  background-color: rgb(29, 29, 211);
+  /* border: none; */
+  border-radius: 10px;
+  color: white;
+  font-weight: bold;
+  height: 40px;
+  width: 100px;
+}
+
+#cards-container .card .card-price button:hover {
+  box-shadow: 1px 1px 1px 1px blue;
+}
+
+/* start-container */
+
+#start-container, #product-not-found, #loading {
+  background-color: var(--bg);
+  height: calc(100vh - 63px);
+  position: absolute;
+  top: 63px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

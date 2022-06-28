@@ -7,7 +7,27 @@ import openBoxIcon from '../images/icons8-box-128.png';
 import '../styles/cart.css';
 
 function Cart() {
-  const [cartList] = useContext(CartContext);
+  const [cartList, setCartList] = useContext(CartContext);
+
+  function removeItem(event) {
+    const editCartList = [...cartList];
+    editCartList.splice(event.target.value, 1);
+    setCartList(editCartList);
+  }
+
+  function increaseQuantity(event) {
+    const editCartList = [...cartList];
+    editCartList[event.target.value].quantity += 1;
+
+    setCartList(editCartList);
+  }
+
+  function decreaseQuantity(event) {
+    const editCartList = [...cartList];
+    editCartList[event.target.value].quantity -= 1;
+
+    setCartList(editCartList);
+  }
 
   return (
     <div id="cart">
@@ -17,10 +37,10 @@ function Cart() {
           <img src={ undoIcon } alt="undoIcon" />
         </Link>
       </div>
-      <div>
+      <header>
         <img src={ cartIcon } alt="cartIcon" />
         <h2>Carrinho de Compras</h2>
-      </div>
+      </header>
       <main>
         { !cartList.length
           ? (
@@ -30,21 +50,47 @@ function Cart() {
             </div>)
           : (
             <div id="cart-products">
-              { cartList.map((product) => (
-                <div key={ product.id }>
-                  <button type="button">
-                    X
-                  </button>
-                  <img src={ product.img } alt={ product.name } />
-                  <h4 data-testid="shopping-cart-product-name">{ product.name }</h4>
-                  <h4>-</h4>
-                  <h3 data-testid="shopping-cart-product-quantity">
-                    { product.quantity }
-                  </h3>
-                  <h4>+</h4>
-                  <h4>
-                    { Number(product.price).toFixed(2) }
-                  </h4>
+              { cartList.map((product, index) => (
+                <div className="product-card" key={ product.id }>
+                  <div className="product-card-btn">
+                    <button
+                      type="button"
+                      value={ index }
+                      onClick={ (event) => removeItem(event) }
+                    >
+                      X
+                    </button>
+                  </div>
+                  <div className="product-card-img">
+                    <img src={ product.img } alt={ product.name } />
+                  </div>
+                  <div className="product-card-title">
+                    <h4 data-testid="shopping-cart-product-name">{ product.name }</h4>
+                  </div>
+                  <div className="product-card-quantity">
+                    <button
+                      type="button"
+                      value={ index }
+                      onClick={ (event) => decreaseQuantity(event) }
+                    >
+                      -
+                    </button>
+                    <h3 data-testid="product-card-quantity">
+                      { product.quantity }
+                    </h3>
+                    <button
+                      type="button"
+                      value={ index }
+                      onClick={ (event) => increaseQuantity(event) }
+                    >
+                      +
+                    </button>
+                  </div>
+                  <div className="product-card-price">
+                    <h4>
+                      { Number(product.price).toFixed(2) }
+                    </h4>
+                  </div>
                 </div>
               ))}
             </div>)}

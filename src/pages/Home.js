@@ -16,7 +16,10 @@ function Home() {
   const [inputValue, setInputValue] = useState('');
   const [categoryValue, setCategoryValue] = useState('');
   const [firstSearchWasMade, setFirstSearchWasMade] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [cartList, setCartList] = useContext(CartContext);
+
+  // fetch functions
 
   async function fetchCategories() {
     const result = await getCategories();
@@ -24,13 +27,24 @@ function Home() {
   }
 
   async function fetchProducts(categoryId, query) {
+    setLoading(true);
     const result = await getProductsFromCategoryAndQuery(categoryId, query);
     setProducts(result.results);
+    setLoading(false);
+  }
+
+  function fetchLocalStorage() {
+    const result = JSON.parse(localStorage.getItem('cartList'));
+    const localStorageCartList = result || [];
+    setCartList(localStorageCartList);
   }
 
   useEffect(() => {
     fetchCategories();
+    fetchLocalStorage();
   }, []);
+
+  // handle inputs functions
 
   function handleRadioCategory(event) {
     fetchProducts(event.target.id, '');
@@ -40,7 +54,6 @@ function Home() {
 
   function handleButton() {
     fetchProducts(categoryValue, inputValue);
-    setFirstSearchWasMade(true);
   }
 
   async function handleAddToCartButton(event) {
@@ -51,6 +64,7 @@ function Home() {
     if (index !== productDoesNotExistInTheContext) {
       editCartList[index].quantity += 1;
 
+      localStorage.setItem('cartList', JSON.stringify(editCartList));
       setCartList(editCartList);
     } else {
       const productData = await getProductsDetails(event.target.id);
@@ -61,34 +75,51 @@ function Home() {
         price: productData.price,
         quantity: 1 };
 
-      setCartList([...editCartList, productInfo]);
+      const newCartList = [...editCartList, productInfo];
+      localStorage.setItem('cartList', JSON.stringify(newCartList));
+      setCartList(newCartList);
     }
   }
 
+  // contitional rendering functions
+
   function renderMain() {
-    if (!firstSearchWasMade) {
+    if (loading && firstSearchWasMade) {
       return (
-        <h1 data-testid="home-initial-message">
-          Digite algum termo de pesquisa ou escolha uma categoria.
-        </h1>
+        <div id="loading">
+          <h1>
+            Loading...
+          </h1>
+        </div>
       );
     }
-    if (firstSearchWasMade && products.length) {
+    if (!firstSearchWasMade) {
       return (
-        <div id="card-div">
+        <div id="start-container">
+          <h1>
+            Digite algum termo de pesquisa ou escolha uma categoria.
+          </h1>
+        </div>
+      );
+    }
+    if (firstSearchWasMade && products.length && !loading) {
+      return (
+        <div id="cards-container">
           { products.map((product) => (
-            <div key={ product.id }>
+            <div className="card" key={ product.id }>
               <Link
                 to={ `detailed/${product.id}` }
                 data-testid="product-detail-link"
               >
-                <div data-testid="product" id="card-div-div">
-                  <h4>{ product.title }</h4>
+                <div data-testid="product" className="card-link">
+                  <div className="card-title">
+                    <h4>{ product.title }</h4>
+                  </div>
                   <img src={ product.thumbnail } alt={ product.title } />
-                  <h5>{`R$ ${product.price.toFixed(2)}`}</h5>
                 </div>
               </Link>
-              <div>
+              <div className="card-price">
+                <h4>{`R$ ${product.price.toFixed(2)}`}</h4>
                 <button
                   id={ product.id }
                   type="button"
@@ -103,36 +134,40 @@ function Home() {
         </div>
       );
     }
-    if (firstSearchWasMade && !products.length) {
+    if (firstSearchWasMade && !products.length && !loading) {
       return (
-        <h1>
-          Nenhum produto foi encontrado
-        </h1>
+        <div id="product-not-found">
+          <h1>
+            Nenhum produto foi encontrado
+          </h1>
+        </div>
       );
     }
   }
 
   return (
     <div id="home">
-      <nav>
+      <aside>
         <h3>Categorias:</h3>
-        { categories.map((category) => (
-          <label
-            htmlFor={ category.id }
-            key={ category.name }
-            data-testid="category"
-          >
-            <input
-              id={ category.id }
-              type="radio"
-              name="categories"
-              onClick={ (event) => handleRadioCategory(event) }
-            />
-            { category.name }
-          </label>))}
-      </nav>
-      <main id="home-main">
-        <div>
+        <div id="galleries">
+          { categories.map((category) => (
+            <label
+              htmlFor={ category.id }
+              key={ category.name }
+              data-testid="category"
+            >
+              <input
+                id={ category.id }
+                type="radio"
+                name="categories"
+                onClick={ (event) => handleRadioCategory(event) }
+              />
+              <span>{ category.name }</span>
+            </label>))}
+        </div>
+      </aside>
+      <main>
+        <header>
           <input
             type="text"
             data-testid="query-input"
@@ -155,7 +190,7 @@ function Home() {
               alt="Aponta para Shopping Cart"
             />
           </Link>
-        </div>
+        </header>
         { renderMain() }
       </main>
     </div>

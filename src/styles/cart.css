@@ -3,18 +3,19 @@
   border: 1px solid red;
 }
 
-#cart > :nth-child(2) {
+#cart header {
+  border: 1px solid red;
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-#cart > :nth-child(2) img {
+#cart header img {
   width: 40px;
   height: 40px;
 }
 
-#empty-cart {
+#cart #empty-cart {
   position: relative;
   top: 20px;
   display: flex;
@@ -22,13 +23,54 @@
   align-items: center;
 }
 
-#empty-cart > img{
+#cart #empty-cart img {
   width: 300px;
 }
 
-#cart-products > div {
+#cart #cart-products .product-card {
   border: 1px solid black;
   display: flex;
   flex-direction: row;
-  gap: 10px;
+}
+
+.product-card-btn {
+  border: 1px solid red;
+  flex-basis: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.product-card-img {
+  border: 1px solid red;
+  flex-basis: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.product-card-title {
+  border: 1px solid red;
+  flex-basis: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.product-card-quantity {
+  display: flex;
+  flex-direction: row;
+  flex-basis: 10%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.product-card-price {
+  border: 1px solid red;
+  flex-basis: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
