@@ -69,8 +69,8 @@ function DetailedProduct() {
         </Link>
       </header>
       { loading ? (
-        <div>
-          <Loading />
+        <div id="loading">
+          <h1>Loading...</h1>
         </div>)
         : (
           <main>

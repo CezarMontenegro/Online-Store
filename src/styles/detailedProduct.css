@@ -89,3 +89,7 @@
 #detailed-product main #product-data #product-details h3 {
   padding-left: 20px;
 }
+
+#detailed-product #loading {
+  background-color: var(--bg);
+}

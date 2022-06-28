@@ -31,8 +31,15 @@ function Home() {
     setLoading(false);
   }
 
+  function fetchLocalStorage() {
+    const data = localStorage.getItem('cartList');
+    const result = JSON.parse(data);
+    setCartList(result);
+  }
+
   useEffect(() => {
     fetchCategories();
+    fetchLocalStorage();
   }, []);
 
   function handleRadioCategory(event) {
@@ -53,6 +60,7 @@ function Home() {
     if (index !== productDoesNotExistInTheContext) {
       editCartList[index].quantity += 1;
 
+      localStorage.setItem('cartList', JSON.stringify(editCartList));
       setCartList(editCartList);
     } else {
       const productData = await getProductsDetails(event.target.id);
@@ -63,7 +71,9 @@ function Home() {
         price: productData.price,
         quantity: 1 };
 
-      setCartList([...editCartList, productInfo]);
+      const newCartList = [...editCartList, productInfo];
+      localStorage.setItem('cartList', JSON.stringify(newCartList));
+      setCartList(newCartList);
     }
   }
 

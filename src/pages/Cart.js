@@ -17,10 +17,10 @@ function Cart() {
           <img src={ undoIcon } alt="undoIcon" />
         </Link>
       </div>
-      <div>
+      <header>
         <img src={ cartIcon } alt="cartIcon" />
         <h2>Carrinho de Compras</h2>
-      </div>
+      </header>
       <main>
         { !cartList.length
           ? (
@@ -31,20 +31,30 @@ function Cart() {
           : (
             <div id="cart-products">
               { cartList.map((product) => (
-                <div key={ product.id }>
-                  <button type="button">
-                    X
-                  </button>
-                  <img src={ product.img } alt={ product.name } />
-                  <h4 data-testid="shopping-cart-product-name">{ product.name }</h4>
-                  <h4>-</h4>
-                  <h3 data-testid="shopping-cart-product-quantity">
-                    { product.quantity }
-                  </h3>
-                  <h4>+</h4>
-                  <h4>
-                    { Number(product.price).toFixed(2) }
-                  </h4>
+                <div className="product-card" key={ product.id }>
+                  <div className="product-card-btn">
+                    <button type="button">
+                      X
+                    </button>
+                  </div>
+                  <div className="product-card-img">
+                    <img src={ product.img } alt={ product.name } />
+                  </div>
+                  <div className="product-card-title">
+                    <h4 data-testid="shopping-cart-product-name">{ product.name }</h4>
+                  </div>
+                  <div className="product-card-quantity">
+                    <h4>-</h4>
+                    <h3 data-testid="product-card-quantity">
+                      { product.quantity }
+                    </h3>
+                    <h4>+</h4>
+                  </div>
+                  <div className="product-card-price">
+                    <h4>
+                      { Number(product.price).toFixed(2) }
+                    </h4>
+                  </div>
                 </div>
               ))}
             </div>)}
