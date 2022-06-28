@@ -12,6 +12,8 @@ function Cart() {
   function removeItem(event) {
     const editCartList = [...cartList];
     editCartList.splice(event.target.value, 1);
+
+    localStorage.setItem('cartList', JSON.stringify(editCartList));
     setCartList(editCartList);
   }
 
@@ -20,12 +22,14 @@ function Cart() {
     editCartList[event.target.value].quantity += 1;
 
     setCartList(editCartList);
+    localStorage.setItem('cartList', JSON.stringify(editCartList));
   }
 
   function decreaseQuantity(event) {
     const editCartList = [...cartList];
     editCartList[event.target.value].quantity -= 1;
 
+    localStorage.setItem('cartList', JSON.stringify(editCartList));
     setCartList(editCartList);
   }
 
@@ -88,7 +92,7 @@ function Cart() {
                   </div>
                   <div className="product-card-price">
                     <h4>
-                      { Number(product.price).toFixed(2) }
+                      { `R$ ${Number(product.price * product.quantity).toFixed(2)}` }
                     </h4>
                   </div>
                 </div>
