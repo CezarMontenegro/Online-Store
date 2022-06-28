@@ -19,6 +19,8 @@ function Home() {
   const [loading, setLoading] = useState(false);
   const [cartList, setCartList] = useContext(CartContext);
 
+  // fetch functions
+
   async function fetchCategories() {
     const result = await getCategories();
     setCategories(result);
@@ -32,15 +34,17 @@ function Home() {
   }
 
   function fetchLocalStorage() {
-    const data = localStorage.getItem('cartList');
-    const result = JSON.parse(data);
-    setCartList(result);
+    const result = JSON.parse(localStorage.getItem('cartList'));
+    const localStorageCartList = result || [];
+    setCartList(localStorageCartList);
   }
 
   useEffect(() => {
     fetchCategories();
     fetchLocalStorage();
   }, []);
+
+  // handle inputs functions
 
   function handleRadioCategory(event) {
     fetchProducts(event.target.id, '');
@@ -76,6 +80,8 @@ function Home() {
       setCartList(newCartList);
     }
   }
+
+  // contitional rendering functions
 
   function renderMain() {
     if (loading && firstSearchWasMade) {
