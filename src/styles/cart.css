@@ -1,13 +1,17 @@
 #cart {
-  padding: 1%;
-  border: 1px solid red;
 }
 
 #cart header {
-  border: 1px solid red;
-  display: flex;
   align-items: center;
-  gap: 10px;
+  background-color: var(--bg);
+  border: 1px solid gray;
+  display: flex;
+  height: 63px;
+  justify-content: space-between;
+  padding: 0 2%;
+  position: fixed;
+  width: 96%;
+  z-index: 1;
 }
 
 #cart header img {
@@ -15,34 +19,79 @@
   height: 40px;
 }
 
+#cart header img:hover {
+  height: 50px;
+  width: 50px;
+}
+
 #cart #empty-cart {
-  position: relative;
-  top: 20px;
+  position: absolute;
+  top: 63px;
+  background-color: var(--bg);
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: calc(100% - 63px);
+  overflow: auto;
 }
 
 #cart #empty-cart img {
   width: 300px;
 }
 
+#cart #cart-products {
+  padding-top: 40px;
+  padding-left: 5%;
+  position: absolute;
+  top: 63px;
+  background-color: var(--bg);
+  width: 100%;
+  height: calc(100% - 63px);
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+#cart #cart-products #cart-products-title {
+  display: flex;
+  gap: 20px;
+}
+
+#cart #cart-products #cart-products-title img {
+  height: 50px;
+  width: 50px;
+}
+
 #cart #cart-products .product-card {
-  border: 1px solid black;
   display: flex;
   flex-direction: row;
+  border: 1px solid gray;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 20px 0;
+  box-sizing: border-box;
+  background-color: var(--cards-bg);
+  width: 50%;
+  border-radius: 10px;
 }
 
 .product-card-btn {
-  border: 1px solid red;
-  flex-basis: 5%;
+  flex-basis: 2%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+.product-card-btn button {
+  background-color: var(--bg-cards);
+  border: none;
+}
+
 .product-card-img {
-  border: 1px solid red;
   flex-basis: 10%;
   display: flex;
   justify-content: center;
@@ -50,7 +99,6 @@
 }
 
 .product-card-title {
-  border: 1px solid red;
   flex-basis: 30%;
   display: flex;
   justify-content: center;
@@ -61,16 +109,50 @@
 .product-card-quantity {
   display: flex;
   flex-direction: row;
-  flex-basis: 10%;
+  flex-basis: 20%;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
 }
 
+.product-card-quantity button {
+  background-color: var(--bg-cards);
+  border: none;
+}
+
+.product-card-quantity h3 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  border: 1px solid gray;
+}
+
 .product-card-price {
-  border: 1px solid red;
-  flex-basis: 10%;
+  flex-basis: 20%;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+#cart-products #total {
+  display: flex;
+}
+
+#cart-products #total #total-valor {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#cart-products #total #total-valor p:first-child {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+#cart-products #total #total-valor p:last-child {
+  font-size: 28px;
 }
