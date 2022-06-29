@@ -2,7 +2,6 @@ import React, { useEffect, useState, useContext } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import cartIcon from '../images/icons8-shopping-cart-50.png';
 import undoIcon from '../images/icons8-reply-arrow-50.png';
-import Loading from '../components/Loading';
 import { getProductsDetails } from '../services/api';
 import '../styles/detailedProduct.css';
 import { CartContext } from '../context/CartContex';
@@ -33,6 +32,7 @@ function DetailedProduct() {
     if (index !== productDoesNotExistInTheContext) {
       editCartList[index].quantity += 1;
 
+      localStorage.setItem('cartList', JSON.stringify(editCartList));
       setCartList(editCartList);
     } else {
       const productData = await getProductsDetails(event.target.id);
@@ -43,7 +43,9 @@ function DetailedProduct() {
         price: productData.price,
         quantity: 1 };
 
-      setCartList([...editCartList, productInfo]);
+      const newCartList = [...editCartList, productInfo];
+      localStorage.setItem('cartList', JSON.stringify(newCartList));
+      setCartList(newCartList);
     }
   }
 
