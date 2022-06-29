@@ -52,8 +52,9 @@ function Home() {
     setFirstSearchWasMade(true);
   }
 
-  function handleButton() {
+  function handleSearchButton() {
     fetchProducts(categoryValue, inputValue);
+    setFirstSearchWasMade(true);
   }
 
   async function handleAddToCartButton(event) {
@@ -102,7 +103,7 @@ function Home() {
         </div>
       );
     }
-    if (firstSearchWasMade && products.length && !loading) {
+    if (firstSearchWasMade && products.length) {
       return (
         <div id="cards-container">
           { products.map((product) => (
@@ -134,7 +135,7 @@ function Home() {
         </div>
       );
     }
-    if (firstSearchWasMade && !products.length && !loading) {
+    if (firstSearchWasMade && !products.length) {
       return (
         <div id="product-not-found">
           <h1>
@@ -177,7 +178,7 @@ function Home() {
             href
             type="button"
             data-testid="query-button"
-            onClick={ handleButton }
+            onClick={ handleSearchButton }
           >
             <img src={ searchIcon } alt="query-button" />
           </a>
