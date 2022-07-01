@@ -90,10 +90,14 @@ function Cart() {
                     </button>
                   </div>
                   <div className="product-card-img">
-                    <img src={ product.img } alt={ product.name } />
+                    <Link to={ `detailed/${product.id}` }>
+                      <img src={ product.img } alt={ product.name } />
+                    </Link>
                   </div>
                   <div className="product-card-title">
-                    <h4 data-testid="shopping-cart-product-name">{ product.name }</h4>
+                    <Link to={ `detailed/${product.id}` }>
+                      <h4 data-testid="shopping-cart-product-name">{ product.name }</h4>
+                    </Link>
                   </div>
                   <div className="product-card-quantity">
                     <button
