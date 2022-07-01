@@ -97,23 +97,21 @@ function DetailedProduct() {
               <div className="product-info">
                 <img src={ details.thumbnail } alt={ details.title } />
                 <h2>Quantidade</h2>
-                <div className="product-info-quantity">
-                  <button
-                    className="quantity-button"
-                    type="button"
-                    onClick={ decreaseQuantity }
-                  >
-                    <img src={ minusIcon } alt="minus" height="20px" />
-                  </button>
-                  <h3>{quantity}</h3>
-                  <button
-                    className="quantity-button"
-                    type="button"
-                    onClick={ increaseQuantity }
-                  >
-                    <img src={ plusIcon } alt="plus" height="20px" />
-                  </button>
-                </div>
+                <button
+                  className="quantity-button"
+                  type="button"
+                  onClick={ increaseQuantity }
+                >
+                  <img src={ plusIcon } alt="plus" height="20px" />
+                </button>
+                <h3>{quantity}</h3>
+                <button
+                  className="quantity-button"
+                  type="button"
+                  onClick={ decreaseQuantity }
+                >
+                  <img src={ minusIcon } alt="minus" height="20px" />
+                </button>
                 <button
                   className="add-button"
                   id={ details.id }
