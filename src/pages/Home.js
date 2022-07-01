@@ -87,7 +87,7 @@ function Home() {
   function renderMain() {
     if (loading && firstSearchWasMade) {
       return (
-        <div id="loading">
+        <div className="loading">
           <h1>
             Loading...
           </h1>
@@ -96,7 +96,7 @@ function Home() {
     }
     if (!firstSearchWasMade) {
       return (
-        <div id="start-container">
+        <div className="start-container">
           <h1>
             Digite algum termo de pesquisa ou escolha uma categoria.
           </h1>
@@ -105,7 +105,7 @@ function Home() {
     }
     if (firstSearchWasMade && products.length) {
       return (
-        <div id="cards-container">
+        <div className="cards-container">
           { products.map((product) => (
             <div className="card" key={ product.id }>
               <Link
@@ -137,7 +137,7 @@ function Home() {
     }
     if (firstSearchWasMade && !products.length) {
       return (
-        <div id="product-not-found">
+        <div className="product-not-found">
           <h1>
             Nenhum produto foi encontrado
           </h1>
@@ -147,10 +147,10 @@ function Home() {
   }
 
   return (
-    <div id="home">
+    <div className="home">
       <aside>
         <h3>Categorias:</h3>
-        <div id="galleries">
+        <div className="galleries">
           { categories.map((category) => (
             <label
               htmlFor={ category.id }

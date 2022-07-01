@@ -61,12 +61,8 @@ function DetailedProduct() {
     if (quantity > 0) setQuantity(quantity - 1);
   }
 
-  function avaliation() {
-
-  }
-
   return (
-    <div id="detailed-product">
+    <div className="detailed-product">
       {console.log(quantity)}
       <header>
         <Link
@@ -88,17 +84,17 @@ function DetailedProduct() {
         </Link>
       </header>
       { loading ? (
-        <div id="loading">
+        <div className="loading">
           <h1>Loading...</h1>
         </div>)
         : (
           <main>
             <h2>{`${details.title} - R$${Number(details.price).toFixed(2)}`}</h2>
-            <div id="product-data">
-              <div id="product-info">
+            <div className="product-data">
+              <div className="product-info">
                 <img src={ details.thumbnail } alt={ details.title } />
                 <h2>Quantidade</h2>
-                <div id="product-info-quantity">
+                <div className="product-info-quantity">
                   <button
                     className="quantity-button"
                     type="button"
@@ -125,7 +121,7 @@ function DetailedProduct() {
                   Add to Cart
                 </button>
               </div>
-              <div id="product-details">
+              <div className="product-details">
                 <h3>Especificações Técnicas:</h3>
                 <ul>
                   { attributes && attributes.map((attribute) => (
@@ -139,13 +135,16 @@ function DetailedProduct() {
             <div>
               <h2>Avaliações</h2>
               <form>
-                <div id="first-line-form">
-                  <input
-                    type="email"
-                    placeholder="E-mail"
-                  />
-                  <StarRating />
-                </div>
+                <fildset>
+                  <div className="first-line-form">
+                    <input
+                      type="email"
+                      placeholder="E-mail"
+                    />
+                    <StarRating />
+                  </div>
+                  <textarea />
+                </fildset>
               </form>
             </div>
           </main>)}

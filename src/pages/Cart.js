@@ -59,7 +59,7 @@ function Cart() {
   }
 
   return (
-    <div id="cart">
+    <div className="cart">
       <header>
         <Link to="/">
           <img src={ undoIcon } alt="undoIcon" />
@@ -68,13 +68,13 @@ function Cart() {
       <main>
         { !cartList.length
           ? (
-            <div id="empty-cart">
+            <div className="empty-cart">
               <img src={ openBoxIcon } alt="openBoxIcon" />
               <h2 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h2>
             </div>)
           : (
-            <div id="cart-products">
-              <div id="cart-products-title">
+            <div className="cart-products">
+              <div className="cart-products-title">
                 <img src={ cartIcon } alt="cartIcon" />
                 <h2>Carrinho de Compras:</h2>
               </div>
@@ -125,8 +125,8 @@ function Cart() {
                   </div>
                 </div>
               ))}
-              <div id="total">
-                <div id="total-valor">
+              <div className="total">
+                <div className="total-valor">
                   <p>Valor Total da Compra:</p>
                   <p>{total()}</p>
                 </div>
