@@ -15,6 +15,9 @@ function DetailedProduct() {
   const [loading, setLoading] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const [cartList, setCartList] = useContext(CartContext);
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+  const [rating, setRating] = useState(1);
   const { attributes } = details;
 
   async function fetchProductDetails() {
@@ -61,13 +64,13 @@ function DetailedProduct() {
     if (quantity > 0) setQuantity(quantity - 1);
   }
 
-  function avaliation() {
-
+  function setStarRating(rate) {
+    setRating(rate);
   }
 
   return (
-    <div id="detailed-product">
-      {console.log(quantity)}
+    <div className="detailed-product">
+      {console.log(rating)}
       <header>
         <Link
           to="/"
@@ -88,33 +91,31 @@ function DetailedProduct() {
         </Link>
       </header>
       { loading ? (
-        <div id="loading">
+        <div className="loading">
           <h1>Loading...</h1>
         </div>)
         : (
           <main>
             <h2>{`${details.title} - R$${Number(details.price).toFixed(2)}`}</h2>
-            <div id="product-data">
-              <div id="product-info">
+            <div className="product-data">
+              <div className="product-info">
                 <img src={ details.thumbnail } alt={ details.title } />
                 <h2>Quantidade</h2>
-                <div id="product-info-quantity">
-                  <button
-                    className="quantity-button"
-                    type="button"
-                    onClick={ decreaseQuantity }
-                  >
-                    <img src={ minusIcon } alt="minus" height="20px" />
-                  </button>
-                  <h3>{quantity}</h3>
-                  <button
-                    className="quantity-button"
-                    type="button"
-                    onClick={ increaseQuantity }
-                  >
-                    <img src={ plusIcon } alt="plus" height="20px" />
-                  </button>
-                </div>
+                <button
+                  className="quantity-button"
+                  type="button"
+                  onClick={ increaseQuantity }
+                >
+                  <img src={ plusIcon } alt="plus" height="20px" />
+                </button>
+                <h3>{quantity}</h3>
+                <button
+                  className="quantity-button"
+                  type="button"
+                  onClick={ decreaseQuantity }
+                >
+                  <img src={ minusIcon } alt="minus" height="20px" />
+                </button>
                 <button
                   className="add-button"
                   id={ details.id }
@@ -125,9 +126,9 @@ function DetailedProduct() {
                   Add to Cart
                 </button>
               </div>
-              <div id="product-details">
-                <h3>Especificações Técnicas:</h3>
+              <div className="product-details">
                 <ul>
+                  <h3>Especificações Técnicas:</h3>
                   { attributes && attributes.map((attribute) => (
                     <li key={ attribute.id }>
                       {`${attribute.name}: ${attribute.value_name}`}
@@ -136,19 +137,24 @@ function DetailedProduct() {
                 </ul>
               </div>
             </div>
-            <div>
-              <h2>Avaliações</h2>
-              <form>
-                <div id="first-line-form">
-                  <input
-                    type="email"
-                    placeholder="E-mail"
-                  />
-                  <StarRating />
-                </div>
-              </form>
-            </div>
           </main>)}
+      <div className="rating">
+        <h2>Avaliações</h2>
+        <form>
+          <div className="first-line-form">
+            <input
+              type="email"
+              placeholder="E-mail"
+              onChange={ (e) => setEmail(e.target.value) }
+            />
+            <StarRating rating={ setStarRating } />
+          </div>
+          <textarea
+            placeholder="Menssagem (opcional)"
+            onChange={ (e) => setMessage(e.target.value) }
+          />
+        </form>
+      </div>
     </div>
   );
 }

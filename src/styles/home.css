@@ -1,5 +1,4 @@
 /* general */
-
 :root {
 
   --bg: rgb(230, 227, 15);
@@ -7,15 +6,14 @@
   --cards-bg: rgba(219, 219, 209, 0.829);
 }
 
-#home {
+.home {
   background-color: var(--bg);
   display: flex;
   width: 100vh;
 }
 
 /* aside  */
-
-#home aside {
+.home aside {
   background-color: var(--bg);
   border: 1px solid gray;
   display: flex;
@@ -26,23 +24,29 @@
   width: 260px;
 }
 
-#home aside #galleries {
+.home aside .galleries {
   display: flex;
   flex-direction: column;
   gap: 3px;
 }
 
-#home aside #galleries span:hover {
-  font-weight: bolder;
+.home aside .galleries span:hover {
+  font-weight: 400;
 }
 
-#home aside #galleries input {
+.home main header input {
+  border-radius: 20px;
+  height: 25px;
+  margin: 15px 0;
+  width: 85%;
+}
+
+.home aside .galleries input {
   margin-right: 5px;
 }
 
 /* main header */
-
-#home main {
+.home main {
   background-color: var(--bg);
   flex-basis: 80%;
   left: 272px;
@@ -50,7 +54,7 @@
   width: calc(100% - 272px);
 }
 
-#home main header {
+.home main header {
   align-items: center;
   background-color: var(--bg);
   border: 1px solid gray;
@@ -61,26 +65,18 @@
   z-index: 1;
 }
 
-#home main header input {
-  border-radius: 20px;
-  height: 25px;
-  margin: 15px 0;
-  width: 85%;
-}
-
-#home main header img {
+.home main header img {
   cursor: pointer;
   height: 40px;
 }
 
-#home main header img:hover {
+.home main header img:hover {
   cursor: pointer;
   height: 50px;
 }
 
 /* cards-container */
-
-#cards-container {
+.cards-container {
   background-color: var(--bg);
   display: flex;
   flex-wrap: wrap;
@@ -91,7 +87,7 @@
   top: 63px;
 }
 
-#cards-container .card {
+.cards-container .card {
   background-color: rgba(219, 219, 209, 0.829);
   border: 1px solid gray;
   border-radius: 5px;
@@ -102,50 +98,48 @@
   width: 30%;
 }
 
-#cards-container .card:hover {
+.cards-container .card:hover {
   border: 3px solid gray;
 }
 
-#cards-container .card .card-link {
+.cards-container .card .card-link {
   display: flex;
   flex-direction: column;
   text-align: center;
 }
 
-#cards-container .card .card-link .card-title {
+.cards-container .card .card-link .card-title {
   height: 96px;
 }
 
-#cards-container .card .card-price {
-  display: flex;
-  justify-content: center;
+.cards-container .card .card-price {
   align-items: center;
-  gap: 20px
+  display: flex;
+  gap: 20px;
+  justify-content: center;
 }
 
-#cards-container .card .card-price button {
+.cards-container .card .card-price button {
   background-color: rgb(29, 29, 211);
-  /* border: none; */
   border-radius: 10px;
   color: white;
-  font-weight: bold;
+  font-weight: 400;
   height: 40px;
   width: 100px;
 }
 
-#cards-container .card .card-price button:hover {
+.cards-container .card .card-price button:hover {
   box-shadow: 1px 1px 1px 1px blue;
 }
 
 /* start-container */
-
-#start-container, #product-not-found, #loading {
+.start-container, .product-not-found, .loading {
+  align-items: center;
   background-color: var(--bg);
+  display: flex;
   height: calc(100vh - 63px);
+  justify-content: center;
   position: absolute;
   top: 63px;
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }

@@ -1,28 +1,27 @@
-#ul-starRating {
-  list-style: none;
+.ul-starRating {
   display: flex;
   gap: 5px;
+  list-style: none;
 }
 
-#ul-starRating .star-icon {
+.ul-starRating .star-icon {
   background-color: var(--bg);
   border: none;
 }
 
-#ul-starRating .star-icon div {
+.ul-starRating .star-icon div {
   background-image: url('../images/icons8-star-50\ \(1\).png');
   background-size: cover;
-  width: 20px;
   height: 20px;
   padding: 0;
-
+  width: 20px;
 }
 
-#ul-starRating .ativo ~ .star-icon div {
+.ul-starRating .ativo ~ .star-icon div {
   background-image: url('../images/icons8-star-50.png');
 }
 
-#ul-starRating .star-icon img {
+.ul-starRating .star-icon img {
   height: 20px;
   width: 20px;
 }
