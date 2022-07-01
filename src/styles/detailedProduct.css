@@ -1,6 +1,7 @@
 .detailed-product {
   display: flex;
   flex-direction: column;
+  width: 100vw;
 }
 
 .detailed-product header {
@@ -21,6 +22,13 @@
   margin: 0;
 }
 
+.product-info .quantity-button > img {
+  height: 30px;
+  margin: 0;
+  padding: 0;
+  width: 30px;
+}
+
 .detailed-product header img:hover {
   height: 50px;
   padding: 0 2%;
@@ -30,14 +38,13 @@
 .detailed-product main {
   align-items: center;
   background-color: var(--bg);
-  border: 1px solid red;
   display: flex;
   flex-direction: column;
   gap: 20px;
-  overflow-y: scroll;
+  overflow: scroll;
   position: absolute;
   top: 63px;
-  width: 100%;
+  width: 101%;
 }
 
 /* product-data */
@@ -53,13 +60,14 @@
 main .product-data .product-info {
   align-items: center;
   display: flex;
-  flex-direction: column;
   flex-basis: 20%;
+  flex-direction: column;
 }
 
+
 main .product-data .product-info > img {
-  margin-top: 1rem;
   border: 1px solid gray;
+  margin-top: 1rem;
 }
 
 main .product-data .product-info > h2 {
@@ -71,39 +79,63 @@ main .product-data .product-info .quantity-button {
   border: none;
 }
 
-main .product-data .product-info .quantity-button > img {
-  height: 30px;
-  width: 30px;
-  margin: 0;
-  padding: 0;
-}
-
 main .product-data .product-info > h3 {
+  background-color: white;
   border: 1px solid gray;
   border-radius: 50%;
-  background-color: white;
-  padding: 15px 20px;
   box-sizing: content-box;
+  padding: 15px 20px;
 }
 
 main .product-data .product-info .add-button {
   background-color: blue;
-  color: white;
-  height: 50px;
-  margin-top: 30px;
   border-radius: 10px;
+  color: white;
   font-size: 1rem;
   font-weight: 800;
+  height: 50px;
   margin-bottom: 20px;
+  margin-top: 30px;
 }
 
 /* product details */
 main .product-data .product-details {
-
   display: flex;
+  flex-basis: 80%;
   flex-direction: row;
   height: 400px;
-  overflow: hidden;
-  flex-basis: 80%;
   justify-content: flex-start;
+  overflow: scroll;
+}
+
+/* rating */
+
+.rating {
+  background-color: var(--bg);
+  border: 1px solid red;
+  padding-left: 2.2rem;
+  position: absolute;
+  top: 590px;
+  width: 99%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.rating .first-line-form {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.rating .first-line-form > input {
+  height: 2rem;
+  width: 20%;
+}
+
+.rating textarea {
+  font-size: 1rem;
+  height: 6rem;
+  margin-bottom: 20px;
+  width: 30%;
 }

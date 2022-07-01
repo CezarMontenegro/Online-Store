@@ -15,6 +15,9 @@ function DetailedProduct() {
   const [loading, setLoading] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const [cartList, setCartList] = useContext(CartContext);
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+  const [rating, setRating] = useState(1);
   const { attributes } = details;
 
   async function fetchProductDetails() {
@@ -63,10 +66,7 @@ function DetailedProduct() {
 
   return (
     <div className="detailed-product">
-      {details.pictures && console.log(details.pictures)}
-      {/* {details.pictures && <img src={details.pictures[1].url}/>}
-      {details.pictures && <img src={details.pictures[2].url}/>}
-      {details.pictures && <img src={details.pictures[3].url}/>} */}
+      {console.log(email)}
       <header>
         <Link
           to="/"
@@ -133,20 +133,24 @@ function DetailedProduct() {
                 </ul>
               </div>
             </div>
-            <h2>Avaliações</h2>
-            <form>
-              <fildset>
-                <div className="first-line-form">
-                  <input
-                    type="email"
-                    placeholder="E-mail"
-                  />
-                  <StarRating />
-                </div>
-                <textarea />
-              </fildset>
-            </form>
           </main>)}
+      <div className="rating">
+        <h2>Avaliações</h2>
+        <form>
+          <div className="first-line-form">
+            <input
+              type="email"
+              placeholder="E-mail"
+              onChange={ (e) => setEmail(e.target.value) }
+            />
+            <StarRating />
+          </div>
+          <textarea
+            placeholder="Menssagem (opcional)"
+            onChange={ (e) => setMessage(e.target.value) }
+          />
+        </form>
+      </div>
     </div>
   );
 }
