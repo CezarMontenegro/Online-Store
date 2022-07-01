@@ -37,7 +37,7 @@
   overflow: auto;
 }
 
-#cart #empty-cart img {
+#cart #empty-cart > img {
   width: 300px;
 }
 
@@ -61,7 +61,7 @@
   gap: 20px;
 }
 
-#cart #cart-products #cart-products-title img {
+#cart #cart-products #cart-products-title > img {
   height: 50px;
   width: 50px;
 }

@@ -44,6 +44,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  border: 1px solid red;
 }
 
 #detailed-product main #product-data #product-info {
@@ -53,29 +54,54 @@
   display: flex;
   flex-basis: 30%;
   flex-direction: column;
-  gap: 50px;
   padding-top: 40px;
+  height: 500px;
+  box-sizing: border-box;
 }
 
 #detailed-product main #product-data #product-info img {
   height: auto;
-  width: 80%;
+  width: 50%;
 }
 
-#detailed-product main #product-data #product-info button {
+#detailed-product main #product-data #product-info .add-button {
   background-color: rgb(29, 29, 211);
-  /* border: none; */
   border-radius: 10px;
   color: white;
   font-size: 18px;
   font-weight: bold;
   height: 40px;
   margin: 15px;
-  width: 80%;
+  width: 60%;
 }
 
-#detailed-product main #product-data #product-info button:hover {
-  box-shadow: 1px 1px 1px 1px blue;
+#detailed-product main #product-data #product-info #product-info-quantity {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 50%;
+}
+
+#detailed-product main #product-data #product-info #product-info-quantity .quantity-button {
+  border: none;
+  background-color: rgba(219, 219, 209, 0);
+}
+
+#detailed-product main #product-data #product-info #product-info-quantity img {
+  width: 30px;
+  height: 30px;
+}
+
+#detailed-product main #product-data #product-info #product-info-quantity h3 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border: 1px solid gray;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  margin: 0;
 }
 
 #detailed-product main #product-data #product-details {
@@ -84,10 +110,20 @@
   display: flex;
   flex-basis: 60%;
   flex-direction: column;
+  height: 500px;
+  overflow-y: scroll;
 }
 
 #detailed-product main #product-data #product-details h3 {
   padding-left: 20px;
+}
+
+#detailed-product main form {
+  border: 1px solid red;
+}
+
+#detailed-product main #first-line-form {
+  display: flex;
 }
 
 #detailed-product #loading {

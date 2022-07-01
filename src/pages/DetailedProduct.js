@@ -1,15 +1,19 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import { CartContext } from '../context/CartContex';
+import { getProductsDetails } from '../services/api';
+import StarRating from '../components/StarRating';
 import cartIcon from '../images/icons8-shopping-cart-50.png';
 import undoIcon from '../images/icons8-reply-arrow-50.png';
-import { getProductsDetails } from '../services/api';
+import minusIcon from '../images/minus.png';
+import plusIcon from '../images/add.png';
 import '../styles/detailedProduct.css';
-import { CartContext } from '../context/CartContex';
 
 function DetailedProduct() {
   const { productId } = useParams();
   const [details, setDetails] = useState({});
   const [loading, setLoading] = useState(false);
+  const [quantity, setQuantity] = useState(1);
   const [cartList, setCartList] = useContext(CartContext);
   const { attributes } = details;
 
@@ -30,7 +34,7 @@ function DetailedProduct() {
     const index = cartList.findIndex((product) => product.id === event.target.id);
 
     if (index !== productDoesNotExistInTheContext) {
-      editCartList[index].quantity += 1;
+      editCartList[index].quantity += quantity;
 
       localStorage.setItem('cartList', JSON.stringify(editCartList));
       setCartList(editCartList);
@@ -41,7 +45,7 @@ function DetailedProduct() {
         img: productData.thumbnail,
         name: productData.title,
         price: productData.price,
-        quantity: 1 };
+        quantity };
 
       const newCartList = [...editCartList, productInfo];
       localStorage.setItem('cartList', JSON.stringify(newCartList));
@@ -49,8 +53,21 @@ function DetailedProduct() {
     }
   }
 
+  function increaseQuantity() {
+    setQuantity(quantity + 1);
+  }
+
+  function decreaseQuantity() {
+    if (quantity > 0) setQuantity(quantity - 1);
+  }
+
+  function avaliation() {
+
+  }
+
   return (
     <div id="detailed-product">
+      {console.log(quantity)}
       <header>
         <Link
           to="/"
@@ -78,9 +95,28 @@ function DetailedProduct() {
           <main>
             <h2>{`${details.title} - R$${Number(details.price).toFixed(2)}`}</h2>
             <div id="product-data">
-              <div id="product-info" data-testid="product-detail-name">
+              <div id="product-info">
                 <img src={ details.thumbnail } alt={ details.title } />
+                <h2>Quantidade</h2>
+                <div id="product-info-quantity">
+                  <button
+                    className="quantity-button"
+                    type="button"
+                    onClick={ decreaseQuantity }
+                  >
+                    <img src={ minusIcon } alt="minus" height="20px" />
+                  </button>
+                  <h3>{quantity}</h3>
+                  <button
+                    className="quantity-button"
+                    type="button"
+                    onClick={ increaseQuantity }
+                  >
+                    <img src={ plusIcon } alt="plus" height="20px" />
+                  </button>
+                </div>
                 <button
+                  className="add-button"
                   id={ details.id }
                   type="button"
                   onClick={ (event) => handleAddToCartButton(event) }
@@ -99,6 +135,18 @@ function DetailedProduct() {
                   ))}
                 </ul>
               </div>
+            </div>
+            <div>
+              <h2>Avaliações</h2>
+              <form>
+                <div id="first-line-form">
+                  <input
+                    type="email"
+                    placeholder="E-mail"
+                  />
+                  <StarRating />
+                </div>
+              </form>
             </div>
           </main>)}
     </div>
