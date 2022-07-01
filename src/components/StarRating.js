@@ -1,8 +1,9 @@
 import React from 'react';
 import '../styles/starRating.css';
 
-function StarRating() {
+function StarRating(props) {
   function avaliation(event) {
+    props.rating(event.target.parentElement.id);
     const stars = document.querySelectorAll('.star-icon');
     const classStar = event.target.parentElement.classList.value;
     const selectedElement = event.target.parentElement;
@@ -18,7 +19,7 @@ function StarRating() {
     <div className="ul-starRating">
       <button
         type="button"
-        data="1"
+        id="1"
         className="star-icon ativo"
         onClick={ (event) => avaliation(event) }
       >
@@ -26,7 +27,7 @@ function StarRating() {
       </button>
       <button
         type="button"
-        data="2"
+        id="2"
         className="star-icon"
         onClick={ (event) => avaliation(event) }
       >
@@ -34,7 +35,7 @@ function StarRating() {
       </button>
       <button
         type="button"
-        data="3"
+        id="3"
         className="star-icon"
         onClick={ (event) => avaliation(event) }
       >
@@ -42,7 +43,7 @@ function StarRating() {
       </button>
       <button
         type="button"
-        data="4"
+        id="4"
         className="star-icon"
         onClick={ (event) => avaliation(event) }
       >
@@ -50,7 +51,7 @@ function StarRating() {
       </button>
       <button
         type="button"
-        data="5"
+        id="5"
         className="star-icon"
         onClick={ (event) => avaliation(event) }
       >

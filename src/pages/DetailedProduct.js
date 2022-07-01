@@ -64,9 +64,13 @@ function DetailedProduct() {
     if (quantity > 0) setQuantity(quantity - 1);
   }
 
+  function setStarRating(rate) {
+    setRating(rate);
+  }
+
   return (
     <div className="detailed-product">
-      {console.log(email)}
+      {console.log(rating)}
       <header>
         <Link
           to="/"
@@ -143,7 +147,7 @@ function DetailedProduct() {
               placeholder="E-mail"
               onChange={ (e) => setEmail(e.target.value) }
             />
-            <StarRating />
+            <StarRating rating={ setStarRating } />
           </div>
           <textarea
             placeholder="Menssagem (opcional)"
