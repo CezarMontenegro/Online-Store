@@ -63,7 +63,10 @@ function DetailedProduct() {
 
   return (
     <div className="detailed-product">
-      {console.log(quantity)}
+      {details.pictures && console.log(details.pictures)}
+      {/* {details.pictures && <img src={details.pictures[1].url}/>}
+      {details.pictures && <img src={details.pictures[2].url}/>}
+      {details.pictures && <img src={details.pictures[3].url}/>} */}
       <header>
         <Link
           to="/"
@@ -90,45 +93,47 @@ function DetailedProduct() {
         : (
           <main>
             <h2>{`${details.title} - R$${Number(details.price).toFixed(2)}`}</h2>
-            <div className="product-info">
-              <img src={ details.thumbnail } alt={ details.title } />
-              <h2>Quantidade</h2>
-              <div className="product-info-quantity">
+            <div className="product-data">
+              <div className="product-info">
+                <img src={ details.thumbnail } alt={ details.title } />
+                <h2>Quantidade</h2>
+                <div className="product-info-quantity">
+                  <button
+                    className="quantity-button"
+                    type="button"
+                    onClick={ decreaseQuantity }
+                  >
+                    <img src={ minusIcon } alt="minus" height="20px" />
+                  </button>
+                  <h3>{quantity}</h3>
+                  <button
+                    className="quantity-button"
+                    type="button"
+                    onClick={ increaseQuantity }
+                  >
+                    <img src={ plusIcon } alt="plus" height="20px" />
+                  </button>
+                </div>
                 <button
-                  className="quantity-button"
+                  className="add-button"
+                  id={ details.id }
                   type="button"
-                  onClick={ decreaseQuantity }
+                  onClick={ (event) => handleAddToCartButton(event) }
+                  data-testid="product-detail-add-to-cart"
                 >
-                  <img src={ minusIcon } alt="minus" height="20px" />
-                </button>
-                <h3>{quantity}</h3>
-                <button
-                  className="quantity-button"
-                  type="button"
-                  onClick={ increaseQuantity }
-                >
-                  <img src={ plusIcon } alt="plus" height="20px" />
+                  Add to Cart
                 </button>
               </div>
-              <button
-                className="add-button"
-                id={ details.id }
-                type="button"
-                onClick={ (event) => handleAddToCartButton(event) }
-                data-testid="product-detail-add-to-cart"
-              >
-                Add to Cart
-              </button>
-            </div>
-            <div className="product-details">
-              <h3>Especificações Técnicas:</h3>
-              <ul>
-                { attributes && attributes.map((attribute) => (
-                  <li key={ attribute.id }>
-                    {`${attribute.name}: ${attribute.value_name}`}
-                  </li>
-                ))}
-              </ul>
+              <div className="product-details">
+                <ul>
+                  <h3>Especificações Técnicas:</h3>
+                  { attributes && attributes.map((attribute) => (
+                    <li key={ attribute.id }>
+                      {`${attribute.name}: ${attribute.value_name}`}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
             <h2>Avaliações</h2>
             <form>
