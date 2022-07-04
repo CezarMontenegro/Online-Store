@@ -38,6 +38,30 @@ body {
   padding: 0 2%;
 }
 
+.detailed-product header a:last-child {
+  align-items: center;
+  display: flex;
+  gap: 5px;
+}
+
+.rating-list .rating-item > p {
+  background-color: white;
+  border: 1px solid gray;
+  height: 6rem;
+  margin-top: 0;
+  width: 32%;
+}
+
+.detailed-product header a:last-child p {
+  background-color: white;
+  border: 1px solid gray;
+  border-radius: 50%;
+  display: flex;
+  gap: 10px;
+  padding: 7px;
+  text-decoration: none;
+}
+
 /* main */
 .detailed-product main {
   align-items: center;
@@ -170,13 +194,7 @@ main .product-data .product-details {
   gap: 20px;
 }
 
-.rating-list .rating-item > p {
-  background-color: white;
-  border: 1px solid gray;
-  height: 6rem;
-  margin-top: 0;
-  width: 32%;
-}
+
 
 .rating-list .rating-item > div > p:first-child {
   background-color: white;

@@ -20,6 +20,7 @@ function DetailedProduct() {
   const [message, setMessage] = useState('');
   const [rating, setRating] = useState(1);
   const [ratingList, setRatingList] = useState([]);
+  const [cartQuantity, setCartQuantity] = useState(0);
   const { attributes } = details;
 
   async function fetchProductDetails() {
@@ -34,6 +35,19 @@ function DetailedProduct() {
       || [];
     setRatingList(newRatingList);
   }
+
+  function defineCartQuantity() {
+    const totalQuantity = cartList.reduce((acc, curr) => {
+      acc += curr.quantity;
+      return acc;
+    }, 0);
+
+    setCartQuantity(totalQuantity);
+  }
+
+  useEffect(() => {
+    defineCartQuantity();
+  }, [cartList]);
 
   useEffect(() => {
     fetchProductDetails();
@@ -109,6 +123,7 @@ function DetailedProduct() {
             src={ cartIcon }
             alt="It heads to the cart"
           />
+          <p>{ cartQuantity }</p>
         </Link>
       </header>
       { loading ? (

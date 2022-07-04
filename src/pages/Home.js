@@ -17,6 +17,7 @@ function Home() {
   const [categoryValue, setCategoryValue] = useState('');
   const [firstSearchWasMade, setFirstSearchWasMade] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [cartQuantity, setCartQuantity] = useState(0);
   const [cartList, setCartList] = useContext(CartContext);
 
   // fetch functions
@@ -38,6 +39,19 @@ function Home() {
     const localStorageCartList = result || [];
     setCartList(localStorageCartList);
   }
+
+  function defineCartQuantity() {
+    const totalQuantity = cartList.reduce((acc, curr) => {
+      acc += curr.quantity;
+      return acc;
+    }, 0);
+
+    setCartQuantity(totalQuantity);
+  }
+
+  useEffect(() => {
+    defineCartQuantity();
+  }, [cartList]);
 
   useEffect(() => {
     fetchCategories();
@@ -190,6 +204,7 @@ function Home() {
               src={ cartIcon }
               alt="Aponta para Shopping Cart"
             />
+            <p>{cartQuantity}</p>
           </Link>
         </header>
         { renderMain() }

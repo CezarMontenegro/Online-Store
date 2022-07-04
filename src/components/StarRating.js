@@ -1,5 +1,6 @@
 import React from 'react';
 import '../styles/starRating.css';
+import PropTypes from 'prop-types';
 
 function StarRating(props) {
   function avaliation(event) {
@@ -62,3 +63,7 @@ function StarRating(props) {
 }
 
 export default StarRating;
+
+StarRating.propTypes = {
+  rating: PropTypes.number.isRequired,
+};

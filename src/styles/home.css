@@ -75,6 +75,22 @@
   height: 50px;
 }
 
+.home main header a:last-child {
+  align-items: center;
+  display: flex;
+  gap: -10px;
+}
+
+.home header a:last-child > p {
+  background-color: white;
+  border: 1px solid gray;
+  border-radius: 50%;
+  display: flex;
+  gap: 10px;
+  padding: 7px;
+  text-decoration: none;
+}
+
 /* cards-container */
 .cards-container {
   background-color: var(--bg);
