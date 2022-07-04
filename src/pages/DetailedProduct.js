@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { CartContext } from '../context/CartContex';
 import { getProductsDetails } from '../services/api';
 import StarRating from '../components/StarRating';
+import StarRated from '../components/StarRated';
 import cartIcon from '../images/icons8-shopping-cart-50.png';
 import undoIcon from '../images/icons8-reply-arrow-50.png';
 import minusIcon from '../images/minus.png';
@@ -91,7 +92,6 @@ function DetailedProduct() {
 
   return (
     <div className="detailed-product">
-      {console.log(rating)}
       <header>
         <Link
           to="/"
@@ -187,7 +187,7 @@ function DetailedProduct() {
           <div key={ index } className="rating-item">
             <div>
               <p>{ratingItem.email}</p>
-              <p>{ratingItem.rating}</p>
+              <StarRated rate={ ratingItem.rating } />
             </div>
             <p>{ratingItem.message}</p>
           </div>
