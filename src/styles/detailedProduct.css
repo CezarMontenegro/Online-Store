@@ -1,3 +1,7 @@
+body {
+  background-color: var(--bg);
+}
+
 .detailed-product {
   display: flex;
   flex-direction: column;
@@ -32,6 +36,30 @@
 .detailed-product header img:hover {
   height: 50px;
   padding: 0 2%;
+}
+
+.detailed-product header a:last-child {
+  align-items: center;
+  display: flex;
+  gap: 5px;
+}
+
+.rating-list .rating-item > p {
+  background-color: white;
+  border: 1px solid gray;
+  height: 6rem;
+  margin-top: 0;
+  width: 32%;
+}
+
+.detailed-product header a:last-child p {
+  background-color: white;
+  border: 1px solid gray;
+  border-radius: 50%;
+  display: flex;
+  gap: 10px;
+  padding: 7px;
+  text-decoration: none;
 }
 
 /* main */
@@ -109,17 +137,19 @@ main .product-data .product-details {
 }
 
 /* rating */
-
 .rating {
+  align-self: center;
   background-color: var(--bg);
-  border: 1px solid red;
+  border: 1px solid gray;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  margin-top: 20px;
+  padding-bottom: 20px;
   padding-left: 2.2rem;
   position: absolute;
   top: 590px;
-  width: 99%;
-  justify-content: center;
+  width: 94%;
 }
 
 .rating .first-line-form {
@@ -136,6 +166,41 @@ main .product-data .product-details {
 .rating textarea {
   font-size: 1rem;
   height: 6rem;
-  margin-bottom: 20px;
-  width: 30%;
+  margin-bottom: 10px;
+  width: 32%;
 }
+
+.rating > button {
+  background-color: blue;
+  border-radius: 10px;
+  color: white;
+  font-size: 1rem;
+  font-weight: 800;
+  height: 50px;
+  width: 7rem;
+}
+
+.rating-list {
+  align-self: center;
+  border: 1px solid gray;
+  padding-left: 30px;
+  position: absolute;
+  top: 930px;
+  width: 94%;
+}
+
+.rating-list .rating-item > div {
+  display: flex;
+  gap: 20px;
+}
+
+
+
+.rating-list .rating-item > div > p:first-child {
+  background-color: white;
+  border: 1px solid gray;
+  height: 2rem;
+  margin-bottom: 10px;
+  width: 20%;
+}
+

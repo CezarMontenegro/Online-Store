@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { CartContext } from '../context/CartContex';
 import { getProductsDetails } from '../services/api';
 import StarRating from '../components/StarRating';
+import StarRated from '../components/StarRated';
 import cartIcon from '../images/icons8-shopping-cart-50.png';
 import undoIcon from '../images/icons8-reply-arrow-50.png';
 import minusIcon from '../images/minus.png';
@@ -18,6 +19,8 @@ function DetailedProduct() {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
   const [rating, setRating] = useState(1);
+  const [ratingList, setRatingList] = useState([]);
+  const [cartQuantity, setCartQuantity] = useState(0);
   const { attributes } = details;
 
   async function fetchProductDetails() {
@@ -27,8 +30,28 @@ function DetailedProduct() {
     setLoading(false);
   }
 
+  function fetchRatingList() {
+    const newRatingList = JSON.parse(localStorage.getItem(`ratingItem${productId}`))
+      || [];
+    setRatingList(newRatingList);
+  }
+
+  function defineCartQuantity() {
+    const totalQuantity = cartList.reduce((acc, curr) => {
+      acc += curr.quantity;
+      return acc;
+    }, 0);
+
+    setCartQuantity(totalQuantity);
+  }
+
+  useEffect(() => {
+    defineCartQuantity();
+  }, [cartList]);
+
   useEffect(() => {
     fetchProductDetails();
+    fetchRatingList();
   }, []);
 
   async function handleAddToCartButton(event) {
@@ -68,9 +91,21 @@ function DetailedProduct() {
     setRating(rate);
   }
 
+  function createAvaliationList() {
+    const obj = {
+      email,
+      message,
+      rating,
+    };
+
+    const newCartList = [...ratingList, obj];
+
+    localStorage.setItem(`ratingItem${productId}`, JSON.stringify(newCartList));
+    setRatingList(newCartList);
+  }
+
   return (
     <div className="detailed-product">
-      {console.log(rating)}
       <header>
         <Link
           to="/"
@@ -88,6 +123,7 @@ function DetailedProduct() {
             src={ cartIcon }
             alt="It heads to the cart"
           />
+          <p>{ cartQuantity }</p>
         </Link>
       </header>
       { loading ? (
@@ -154,6 +190,23 @@ function DetailedProduct() {
             onChange={ (e) => setMessage(e.target.value) }
           />
         </form>
+        <button
+          type="button"
+          onClick={ createAvaliationList }
+        >
+          Avaliar
+        </button>
+      </div>
+      <div className="rating-list">
+        {ratingList.map((ratingItem, index) => (
+          <div key={ index } className="rating-item">
+            <div>
+              <p>{ratingItem.email}</p>
+              <StarRated rate={ ratingItem.rating } />
+            </div>
+            <p>{ratingItem.message}</p>
+          </div>
+        ))}
       </div>
     </div>
   );
