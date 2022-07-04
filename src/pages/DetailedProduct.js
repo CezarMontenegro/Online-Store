@@ -18,6 +18,7 @@ function DetailedProduct() {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
   const [rating, setRating] = useState(1);
+  const [ratingList, setRatingList] = useState([]);
   const { attributes } = details;
 
   async function fetchProductDetails() {
@@ -27,8 +28,15 @@ function DetailedProduct() {
     setLoading(false);
   }
 
+  function fetchRatingList() {
+    const newRatingList = JSON.parse(localStorage.getItem(`ratingItem${productId}`))
+      || [];
+    setRatingList(newRatingList);
+  }
+
   useEffect(() => {
     fetchProductDetails();
+    fetchRatingList();
   }, []);
 
   async function handleAddToCartButton(event) {
@@ -66,6 +74,19 @@ function DetailedProduct() {
 
   function setStarRating(rate) {
     setRating(rate);
+  }
+
+  function createAvaliationList() {
+    const obj = {
+      email,
+      message,
+      rating,
+    };
+
+    const newCartList = [...ratingList, obj];
+
+    localStorage.setItem(`ratingItem${productId}`, JSON.stringify(newCartList));
+    setRatingList(newCartList);
   }
 
   return (
@@ -154,6 +175,23 @@ function DetailedProduct() {
             onChange={ (e) => setMessage(e.target.value) }
           />
         </form>
+        <button
+          type="button"
+          onClick={ createAvaliationList }
+        >
+          Avaliar
+        </button>
+      </div>
+      <div className="rating-list">
+        {ratingList.map((ratingItem, index) => (
+          <div key={ index } className="rating-item">
+            <div>
+              <p>{ratingItem.email}</p>
+              <p>{ratingItem.rating}</p>
+            </div>
+            <p>{ratingItem.message}</p>
+          </div>
+        ))}
       </div>
     </div>
   );
