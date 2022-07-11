@@ -10,7 +10,7 @@ Este projeto é uma versão simplificada, sem persistência no banco de dados, d
 
 ## Link da aplicação
 
-  https://cezarmontenegro.github.io/MyTunes
+  https://cezarmontenegro.github.io/Online-Store/
 
 ## Habilidades desenvolvidas no projeto
 
