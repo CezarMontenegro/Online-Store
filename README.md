@@ -2,11 +2,10 @@
 
 ## Descrição
 
-Este projeto é uma versão simplificada, sem persistência no banco de dados, de uma **loja online**, temos uma aplicação onde os usuários poderão:
-  - Buscar produtos por termos e categorias a partir da _API do Mercado Livre_;
-  - Interagir com os produtos buscados de modo a adicioná-los e removê-los de um carrinho de compras em diferentes quantidades;
-  - Visualizar detalhes e avaliações prévias de um produto, bem como criar novas avaliações;
-  - E por fim, finalizar a compra (simulada) dos itens selecionados.
+Este projeto se trata de um Todo-List para organização das tarefas do dia a dia, temos uma aplicação onde os usuários poderão:
+  - Adicionar tarefas e um nível de dificuldade para melhor planejamento;
+  - Excluir as tarefas já executadas ou canceladas;
+  - Editar as tarefas listadas.
 
 ## Link da aplicação
 
@@ -14,15 +13,9 @@ Este projeto é uma versão simplificada, sem persistência no banco de dados, d
 
 ## Habilidades desenvolvidas no projeto
 
-  * Fazer requisições e consumir dados vindos de uma `API`;
-  * Utilizar a _Context API_ do **React** para gerenciar estado.
-  * Utilizar o _React Hook useState_;
-  * Utilizar o _React Hook useContext_;
-  * Utilizar o _React Hook useEffect_;
-  * Utilizar o localStorage para armazenar e buscar dados;
-  * Utilizar a biblioteca **React-Router** para criar rotas corretamente;
-  * Utilizar **PropTypes** para garantir o comportamento correto das props em seus components; 
-  * Criar componentes estilizados com CSS puro;
+  * Uso do Typescript para tipar váriaveis, contantes, funções, estados e props;
+  * Criação de um modal para edição de tarefas;
+  * Estilização de componentes com o css-modules;
 
 ## Comandos para rodar o projeto na sua máquina
 
